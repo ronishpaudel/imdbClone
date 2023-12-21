@@ -1,14 +1,25 @@
 import React from "react";
 import { StyleSheet, Image, Text, View, ScrollView } from "react-native";
 
-export default function Card() {
-  const image = { uri: "/icon.png" };
+interface ICard {
+  title: string;
+  description: string;
+  image: string;
+  cardKey: number;
+}
+
+export default function Card({ cardKey, title, description, image }: ICard) {
+  const images = { uri: `https://image.tmdb.org/t/p/w500/${image}` };
   return (
-    <View style={styles.container}>
-      <Image source={image} style={styles.image} />
-      <View style={styles.content}>
-        <Text style={styles.title}>Title</Text>
-        <Text style={styles.description}>Description</Text>
+    <View style={styles.container} key={cardKey}>
+      <Image source={images} style={styles.image} />
+      <View>
+        <Text style={styles.title} numberOfLines={1}>
+          {title}
+        </Text>
+        <Text style={styles.description} numberOfLines={4}>
+          {description}
+        </Text>
       </View>
     </View>
   );
@@ -16,30 +27,29 @@ export default function Card() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-
-    backgroundColor: "#f0f0f0",
-    borderRadius: 10,
-    padding: 15,
-    margin: 10,
+    width: 191,
+    backgroundColor: "rgb(245,197,24)",
+    borderRadius: 8,
+    padding: 10,
   },
   image: {
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    marginRight: 15,
+    width: 180,
+    height: 195,
+    alignSelf: "center",
+    borderRadius: 10,
   },
-  content: {
-    flex: 1,
-  },
+
   title: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "bold",
     color: "#333",
+    alignSelf: "center",
+    height: 20,
   },
   description: {
     fontSize: 14,
     color: "#666",
     marginTop: 5,
+    alignSelf: "center",
   },
 });
