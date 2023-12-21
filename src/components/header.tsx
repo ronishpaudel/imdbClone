@@ -1,23 +1,33 @@
-import { SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#0F0F0F",
-    flex: 1,
     justifyContent: "space-between",
     flexDirection: "row",
   },
   text: {
-    color: "white",
-    paddingLeft: "6%",
-    paddingRight: "6%",
+    color: "black",
+    fontWeight: "bold",
+    fontSize: 16,
+    alignSelf: "center",
+    padding: "2%",
+  },
+  box: {
+    backgroundColor: "rgb(245,197,24)",
+    borderRadius: 5,
+    marginLeft: "3%",
+    marginRight: "3%",
   },
 });
 export default function Header() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>Header</Text>
-      <Text style={styles.text}>Header</Text>
+      <View style={styles.box}>
+        <Text style={styles.text}>ImdbClone</Text>
+      </View>
+
+      <Image source={{ uri: "asset:/menuIcon.png" }} />
     </SafeAreaView>
   );
 }
