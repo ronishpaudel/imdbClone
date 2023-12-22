@@ -1,17 +1,32 @@
 import React from "react";
-import { StyleSheet, Image, Text, View, ScrollView } from "react-native";
+import {
+  StyleSheet,
+  Image,
+  Text,
+  View,
+  ScrollView,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from "react-native";
 
 interface ICard {
   title: string;
   description: string;
   image: string;
   cardKey: number;
+  onPress: TouchableOpacityProps["onPress"];
 }
 
-export default function Card({ cardKey, title, description, image }: ICard) {
+export default function Card({
+  cardKey,
+  title,
+  description,
+  image,
+  onPress,
+}: ICard) {
   const images = { uri: `https://image.tmdb.org/t/p/w500/${image}` };
   return (
-    <View style={styles.container} key={cardKey}>
+    <TouchableOpacity style={styles.container} key={cardKey} onPress={onPress}>
       <Image source={images} style={styles.image} />
       <View>
         <Text style={styles.title} numberOfLines={1}>
@@ -21,7 +36,7 @@ export default function Card({ cardKey, title, description, image }: ICard) {
           {description}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
