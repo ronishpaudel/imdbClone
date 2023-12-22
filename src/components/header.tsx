@@ -1,4 +1,6 @@
-import { Image, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
   container: {
@@ -6,28 +8,56 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
   },
-  text: {
-    color: "black",
-    fontWeight: "bold",
-    fontSize: 16,
-    alignSelf: "center",
-    padding: "2%",
-  },
-  box: {
+  textWrapper: {
     backgroundColor: "rgb(245,197,24)",
     borderRadius: 5,
     marginLeft: "3%",
-    marginRight: "3%",
+    alignSelf: "center",
+  },
+  text: {
+    color: "black",
+    fontWeight: "bold",
+    padding: "2%",
+    fontSize: 16,
+  },
+  box: {
+    paddingLeft: "2%",
   },
 });
+
 export default function Header() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={["top"]}>
       <View style={styles.box}>
-        <Text style={styles.text}>ImdbClone</Text>
+        <View style={styles.textWrapper}>
+          <Text style={styles.text}>ImdbClone</Text>
+        </View>
       </View>
-
-      <Image source={{ uri: "asset:/menuIcon.png" }} />
+      <TouchableOpacity>
+        <Image
+          source={require("../images/search.png")}
+          style={{
+            height: 32,
+            width: 40,
+            marginRight: "3%",
+            alignSelf: "center",
+            borderRadius: 4,
+          }}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Image
+          source={require("../images/menuIcon.png")}
+          style={{
+            height: 32,
+            width: 40,
+            backgroundColor: "rgb(245,197,24)",
+            marginRight: "3%",
+            alignSelf: "center",
+            borderRadius: 4,
+          }}
+        />
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
