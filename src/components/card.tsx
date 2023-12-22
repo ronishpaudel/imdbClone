@@ -49,12 +49,13 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 180,
-    height: 195,
+    height: 200,
     alignSelf: "center",
     borderRadius: 10,
   },
 
   title: {
+    paddingTop: 2,
     fontSize: 17,
     fontWeight: "bold",
     color: "#333",
