@@ -1,6 +1,5 @@
 import React from "react";
-import Footer from "./src/components/footer";
-import Main from "./src/components/main";
+import { Navigator } from "./src/components/navigator";
 import Header from "./src/components/header";
 import { View, StyleSheet } from "react-native";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -16,9 +15,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <QueryClientProvider client={queryClient}>
-        <Header />
-        <Main />
-        {/* <Footer /> */}
+        <Navigator />
       </QueryClientProvider>
     </View>
   );
