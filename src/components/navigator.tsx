@@ -13,6 +13,7 @@ import { TMovie } from "../../types/TMovie";
 import { Details } from "./details";
 import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { MyTabs } from "./tabBar";
+import { DetailHeader } from "./detailHeader";
 
 export type RootStackParamList = {
   Main: NavigatorScreenParams<HomeTabParamList>;
@@ -54,7 +55,7 @@ function Navigator() {
         <Stack.Screen
           name="Details"
           component={Details}
-          options={{ header: () => <Header /> }}
+          options={{ header: () => <DetailHeader /> }}
         />
       </Stack.Navigator>
     </NavigationContainer>
