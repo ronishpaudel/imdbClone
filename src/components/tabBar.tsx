@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Text, View } from "react-native";
 import { PopularMoviesList, Main, UpcomingMovies } from "./main";
 import { MyTabBar } from "./bottomTabBar";
+import { TopRatedMoviesList } from "./topRatedMovies";
 
 const Tab = createBottomTabNavigator();
 
@@ -11,12 +12,12 @@ function MyTabs() {
       <Tab.Screen
         name="Main"
         component={Main}
-        options={{ headerShown: false, tabBarLabel: "asdasdsd" }}
+        options={{ headerShown: false, tabBarLabel: "Home" }}
       />
       <Tab.Screen
         name="Settings"
-        component={UpcomingMovies}
-        options={{ headerShown: false, tabBarLabel: "asd" }}
+        component={TopRatedMoviesList}
+        options={{ headerShown: false, tabBarLabel: "Top-Rated" }}
       />
     </Tab.Navigator>
   );
