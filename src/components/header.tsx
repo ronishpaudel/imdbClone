@@ -1,12 +1,23 @@
-import React from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useSnapshot } from "valtio";
+import { searchStore } from "../../store/searchStore";
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#0F0F0F",
-    justifyContent: "space-between",
+  },
+  anotherContainer: {
     flexDirection: "row",
+    justifyContent: "space-between",
   },
   textWrapper: {
     backgroundColor: "rgb(245,197,24)",
@@ -23,29 +34,81 @@ const styles = StyleSheet.create({
   box: {
     paddingLeft: "2%",
   },
+  SearchContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  queryContainer: {
+    backgroundColor: "rgb(245,197,24)",
+    width: 300,
+    borderRadius: 5,
+    marginLeft: "4%",
+    flexDirection: "row",
+    padding: 9,
+    justifyContent: "space-between",
+  },
+  queryBox: {
+    width: "95%",
+  },
 });
 
 export default function Header() {
+  const [showSearchBar, setShowSearchBar] = useState(false);
+
+  const { searchQuery } = useSnapshot(searchStore);
+
+  function onPressSearchBar() {
+    setShowSearchBar(!showSearchBar);
+  }
+  function onPressCancel() {
+    setShowSearchBar(false);
+    searchStore.setSearchQuery("");
+  }
+  function onPressClear() {
+    searchStore.setSearchQuery("");
+  }
+
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
-      <View style={styles.box}>
-        <View style={styles.textWrapper}>
-          <Text style={styles.text}>ImdbClone</Text>
+      {showSearchBar ? (
+        <View style={styles.SearchContainer}>
+          <View style={styles.queryContainer}>
+            <TextInput
+              style={styles.queryBox}
+              placeholder="Search bar"
+              value={searchQuery}
+              onChangeText={(text) => searchStore.setSearchQuery(text)}
+            ></TextInput>
+            <TouchableOpacity onPress={onPressClear}>
+              <Text style={{ color: "black", width: 20, height: 20 }}>x</Text>
+            </TouchableOpacity>
+          </View>
+          <TouchableOpacity onPress={onPressCancel}>
+            <Text style={{ color: "white" }}>Cancel</Text>
+          </TouchableOpacity>
         </View>
-      </View>
-
-      <TouchableOpacity>
-        <Image
-          source={require("../images/search.png")}
-          style={{
-            height: 40,
-            width: 40,
-            marginRight: "5%",
-            alignSelf: "center",
-            borderRadius: 4,
-          }}
-        />
-      </TouchableOpacity>
+      ) : (
+        <View style={styles.anotherContainer}>
+          <View style={styles.box}>
+            <View style={styles.textWrapper}>
+              <Text style={styles.text}>ImdbClone</Text>
+            </View>
+          </View>
+          <TouchableOpacity onPress={onPressSearchBar}>
+            <Image
+              source={require("../images/search.png")}
+              style={{
+                height: 35,
+                width: 40,
+                marginRight: "5%",
+                alignSelf: "center",
+                borderRadius: 4,
+              }}
+            />
+          </TouchableOpacity>
+        </View>
+      )}
     </SafeAreaView>
   );
 }
