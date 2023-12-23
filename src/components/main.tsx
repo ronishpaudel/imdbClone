@@ -13,6 +13,10 @@ import { useUpcoming } from "../hooks/useUpcoming";
 import Carousel from "react-native-snap-carousel";
 import { RootStackScreenProps } from "./navigator";
 import { useNavigation } from "@react-navigation/native";
+import { useMovieSearch } from "../hooks/useMovieSearch";
+import { useDebounce } from "../hooks/useDebounce";
+import { useSnapshot } from "valtio";
+import { searchStore } from "../../store/searchStore";
 
 const styles = StyleSheet.create({
   container: {
@@ -73,6 +77,7 @@ export const PopularMoviesList = () => {
             title: item.title,
             overview: item.overview,
             poster_path: item.poster_path,
+            release_date: item.release_date,
           })
         }
         title={item.title}
@@ -133,6 +138,7 @@ export function UpcomingMovies() {
             title: item.title,
             overview: item.overview,
             poster_path: item.poster_path,
+            release_date: item.release_date,
           })
         }
         title={item.title}
@@ -196,10 +202,71 @@ export function UpcomingMovies() {
     </View>
   );
 }
+export const SearchMoviesList = () => {
+  const { searchQuery } = useSnapshot(searchStore);
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
+  const {
+    data: movieSearch,
+    isError,
+    isLoading,
+    error,
+  } = useMovieSearch(debouncedSearchQuery);
+  function dataNotLoad() {
+    if (error) {
+      console.log(error);
+    }
+  }
+  const navigation =
+    useNavigation<RootStackScreenProps<"Main">["navigation"]>();
+  const renderMovieCard = ({ item }: { item: TMovie }) => (
+    <View style={styles.cardItem}>
+      <Card
+        onPress={() =>
+          navigation.navigate("Details", {
+            id: item.id,
+            title: item.title,
+            overview: item.overview,
+            poster_path: item.poster_path,
+            release_date: item.release_date,
+          })
+        }
+        title={item.title}
+        description={item.overview}
+        image={item.poster_path}
+        cardKey={item.id}
+      />
+    </View>
+  );
+  return (
+    <View>
+      {isLoading ? (
+        <View style={styles.loadingErrorContainer}>
+          <Text style={{ color: "white" }}>Loading....</Text>
+        </View>
+      ) : isError ? (
+        <TouchableOpacity
+          onPress={dataNotLoad}
+          style={styles.loadingErrorContainer}
+        >
+          <Text style={styles.errorText}>Error occurred. Tap to retry!</Text>
+        </TouchableOpacity>
+      ) : (
+        <FlatList
+          data={movieSearch}
+          renderItem={renderMovieCard}
+          keyExtractor={(item: TMovie) => item.id.toString()}
+          contentContainerStyle={styles.cardContainer}
+          numColumns={2}
+        />
+      )}
+    </View>
+  );
+};
 export function Main({ navigation, route }: RootStackScreenProps<"Main">) {
+  const { searchQuery } = useSnapshot(searchStore);
   return (
     <View style={styles.container}>
-      <PopularMoviesList />
+      {searchQuery ? <SearchMoviesList /> : <PopularMoviesList />}
     </View>
   );
 }
