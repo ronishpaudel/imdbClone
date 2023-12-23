@@ -55,7 +55,9 @@ function Navigator() {
         <Stack.Screen
           name="Details"
           component={Details}
-          options={{ header: () => <DetailHeader /> }}
+          options={{
+            header: () => <DetailHeader />,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
