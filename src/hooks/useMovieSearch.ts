@@ -17,7 +17,7 @@ const fetchMovieData: QueryFunction<TMovie[], TSearchQueryKey> = async (
   return response.data.results;
 };
 
-const useMovieSearch = (searchInput: string) => {
+const useMovieSearch = ({ searchInput }: { searchInput: string }) => {
   const moviesQuery = useQuery({
     queryKey: searchResultKeys.search(searchInput),
     queryFn: fetchMovieData,
