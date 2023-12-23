@@ -14,6 +14,7 @@ interface ICard {
   description: string;
   image: string;
   cardKey: number;
+  Release_Date?: string;
   onPress: TouchableOpacityProps["onPress"];
 }
 
@@ -22,6 +23,7 @@ export default function Card({
   title,
   description,
   image,
+  Release_Date,
   onPress,
 }: ICard) {
   const images = { uri: `https://image.tmdb.org/t/p/w500/${image}` };
@@ -35,6 +37,7 @@ export default function Card({
         <Text style={styles.description} numberOfLines={4}>
           {description}
         </Text>
+        <Text>{Release_Date}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -46,6 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: "rgb(245,197,24)",
     borderRadius: 8,
     padding: 10,
+    gap: 5,
   },
   image: {
     width: 180,
@@ -55,7 +59,6 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    paddingTop: 2,
     fontSize: 17,
     fontWeight: "bold",
     color: "#333",
@@ -65,7 +68,8 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: "#666",
-    marginTop: 5,
+    paddingTop: 5,
     alignSelf: "center",
+    height: 60,
   },
 });
