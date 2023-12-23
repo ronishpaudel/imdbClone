@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { RootStackScreenProps } from "./navigator";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -41,26 +41,15 @@ const styles = StyleSheet.create({
 });
 
 export function DetailHeader() {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container} edges={["top"]}>
-      <TouchableOpacity style={styles.detailBox}>
+      <TouchableOpacity style={styles.detailBox} onPress={navigation.goBack}>
         <Image
           source={require("../images/backCaret.png")}
           style={styles.image}
         />
         <Text style={styles.detailText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <Image
-          source={require("../images/search.png")}
-          style={{
-            height: 30,
-            width: 30,
-            marginRight: "5%",
-            alignSelf: "center",
-            borderRadius: 4,
-          }}
-        />
       </TouchableOpacity>
     </SafeAreaView>
   );
