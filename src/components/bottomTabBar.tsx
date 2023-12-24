@@ -7,7 +7,6 @@ export function MyTabBar({ state, descriptors, navigation }: any) {
   return (
     <View style={{ flexDirection: "row" }}>
       {state.routes.map((route, index) => {
-        console.log(index);
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
