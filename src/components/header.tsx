@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   Image,
+  Pressable,
   StyleSheet,
   Text,
   TextInput,
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
 
 export default function Header() {
   const [showSearchBar, setShowSearchBar] = useState(false);
-
   const { searchQuery } = useSnapshot(searchStore);
 
   function onPressSearchBar() {
@@ -81,19 +81,22 @@ export default function Header() {
               onChangeText={(text) => searchStore.setSearchQuery(text)}
             ></TextInput>
             <TouchableOpacity onPress={onPressClear}>
-              <Text style={{ color: "black", width: 20, height: 20 }}>x</Text>
+              <Text style={{ color: "#666", width: 20, height: 20 }}>x</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity onPress={onPressCancel}>
-            <Text style={{ color: "white" }}>Cancel</Text>
+          <TouchableOpacity
+            onPress={onPressCancel}
+            style={{ height: 20, width: 50 }}
+          >
+            <Text style={{ color: "white", alignSelf: "center" }}>Cancel</Text>
           </TouchableOpacity>
         </View>
       ) : (
         <View style={styles.anotherContainer}>
           <View style={styles.box}>
-            <View style={styles.textWrapper}>
+            <Pressable style={styles.textWrapper}>
               <Text style={styles.text}>ImdbClone</Text>
-            </View>
+            </Pressable>
           </View>
           <TouchableOpacity onPress={onPressSearchBar}>
             <Image
