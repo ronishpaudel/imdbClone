@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export function MyTabBar({ state, descriptors, navigation }: any) {
@@ -51,10 +51,20 @@ export function MyTabBar({ state, descriptors, navigation }: any) {
               alignItems: "center",
             }}
           >
-            <SafeAreaView edges={["bottom"]}>
-              {options?.tabBarIcon?.()}
+            <SafeAreaView
+              edges={["bottom"]}
+              style={{
+                paddingTop: 10,
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Text>{options?.tabBarIcon?.(isFocused)}</Text>
               <Text
-                style={{ color: isFocused ? "yellow" : "white", padding: 15 }}
+                style={{
+                  color: isFocused ? "yellow" : "white",
+                  fontSize: 12,
+                }}
               >
                 {label}
               </Text>
