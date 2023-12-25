@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     marginLeft: "4%",
     flexDirection: "row",
     padding: 9,
-    justifyContent: "space-between",
+    marginRight: 10,
+    justifyContent: "center",
   },
   queryBox: {
     width: "95%",
@@ -81,12 +82,20 @@ export default function Header() {
               onChangeText={(text) => searchStore.setSearchQuery(text)}
             ></TextInput>
             <TouchableOpacity onPress={onPressClear}>
-              <Text style={{ color: "#666", width: 20, height: 20 }}>x</Text>
+              <Image
+                source={require("../images/remove-icon.png")}
+                resizeMode="center"
+                style={{ width: 45, height: 20 }}
+              />
             </TouchableOpacity>
           </View>
           <TouchableOpacity
             onPress={onPressCancel}
-            style={{ height: 20, width: 50 }}
+            style={{
+              width: 60,
+              padding: 3.5,
+              // backgroundColor: "white",
+            }}
           >
             <Text style={{ color: "white", alignSelf: "center" }}>Cancel</Text>
           </TouchableOpacity>
