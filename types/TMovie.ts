@@ -14,3 +14,19 @@ export type TMovie = {
   vote_average?: number;
   vote_count?: number;
 };
+interface Trailer {
+  categories: string[];
+  id: string;
+  language: string;
+  published: string;
+  thumbnail: string;
+  title: string;
+  views: number;
+  youtube_channel_id: string;
+  youtube_thumbnail: string;
+  youtube_video_id: string;
+}
+
+export interface Data {
+  data: Trailer[];
+}
