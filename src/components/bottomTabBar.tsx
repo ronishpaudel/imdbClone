@@ -1,6 +1,4 @@
 import { View, Text, TouchableOpacity } from "react-native";
-
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export function MyTabBar({ state, descriptors, navigation }: any) {
@@ -35,6 +33,7 @@ export function MyTabBar({ state, descriptors, navigation }: any) {
             target: route.key,
           });
         };
+        console.log({ options });
 
         return (
           <TouchableOpacity
@@ -53,6 +52,7 @@ export function MyTabBar({ state, descriptors, navigation }: any) {
             }}
           >
             <SafeAreaView edges={["bottom"]}>
+              {options?.tabBarIcon?.()}
               <Text
                 style={{ color: isFocused ? "yellow" : "white", padding: 15 }}
               >
