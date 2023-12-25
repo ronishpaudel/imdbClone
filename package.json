@@ -22,8 +22,8 @@
     "react-native-safe-area-context": "4.6.3",
     "react-native-screens": "~3.22.0",
     "react-native-snap-carousel": "^3.9.1",
-    "valtio": "^1.12.1",
-    "expo-av": "~13.4.1"
+    "react-native-webview": "13.2.2",
+    "valtio": "^1.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
