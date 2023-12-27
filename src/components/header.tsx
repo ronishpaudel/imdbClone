@@ -47,7 +47,8 @@ const styles = StyleSheet.create({
     marginLeft: "4%",
     flexDirection: "row",
     padding: 9,
-    marginRight: 10,
+    paddingLeft: 20,
+    paddingRight: 15,
     justifyContent: "center",
   },
   queryBox: {
