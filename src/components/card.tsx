@@ -4,7 +4,6 @@ import {
   Image,
   Text,
   View,
-  ScrollView,
   TouchableOpacity,
   TouchableOpacityProps,
 } from "react-native";
@@ -29,7 +28,7 @@ export default function Card({
   const images = { uri: `https://image.tmdb.org/t/p/w500/${image}` };
   return (
     <TouchableOpacity style={styles.container} key={cardKey} onPress={onPress}>
-      <Image source={images} style={styles.image} />
+      <Image source={images} style={styles.image} resizeMode="cover" />
       <View>
         <Text style={styles.title} numberOfLines={1}>
           {title}
@@ -48,12 +47,15 @@ const styles = StyleSheet.create({
     width: 191,
     backgroundColor: "rgb(245,197,24)",
     borderRadius: 8,
-    padding: 10,
-    gap: 5,
+    paddingTop: 10,
+    paddingRight: 12,
+    paddingLeft: 12,
+    paddingBottom: 0,
+    gap: 8,
   },
   image: {
     width: 180,
-    height: 200,
+    height: 240,
     alignSelf: "center",
     borderRadius: 10,
   },
