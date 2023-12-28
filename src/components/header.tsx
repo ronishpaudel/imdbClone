@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   Image,
+  Keyboard,
   Pressable,
   StyleSheet,
   Text,
@@ -69,6 +70,7 @@ export default function Header() {
   }
   function onPressClear() {
     searchStore.setSearchQuery("");
+    Keyboard.dismiss();
   }
 
   return (
