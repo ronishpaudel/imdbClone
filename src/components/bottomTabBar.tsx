@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export function MyTabBar({ state, descriptors, navigation }: any) {
   return (
     <View style={{ flexDirection: "row" }}>
-      {state.routes.map((route, index) => {
+      {state.routes.map((route: any, index: any) => {
         const { options } = descriptors[route.key];
         const label =
           options.tabBarLabel !== undefined
@@ -37,6 +37,7 @@ export function MyTabBar({ state, descriptors, navigation }: any) {
 
         return (
           <TouchableOpacity
+            key={route.key}
             accessibilityRole="button"
             activeOpacity={1}
             accessibilityState={isFocused ? { selected: true } : {}}
