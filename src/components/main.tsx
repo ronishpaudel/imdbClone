@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   cardItem: {
     // flexBasis: "50%",
+
     padding: 5,
   },
   UpcomingCardItem: {
@@ -210,6 +211,7 @@ export const SearchMoviesList = () => {
     isError,
     isLoading,
     error,
+    isFetched,
   } = useMovieSearch(debouncedSearchQuery);
   function dataNotLoad() {
     if (error) {
@@ -250,6 +252,20 @@ export const SearchMoviesList = () => {
         >
           <Text style={styles.errorText}>Error occurred. Tap to retry!</Text>
         </TouchableOpacity>
+      ) : movieSearch?.length === 0 ? (
+        <View
+          style={{
+            alignItems: "center",
+            flexDirection: "column",
+            aspectRatio: 16 / 9,
+            marginTop: 280,
+            width: "100%",
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 16 }}>
+            Sorry, no movies found. Try a different search.
+          </Text>
+        </View>
       ) : (
         <FlatList
           data={movieSearch}
