@@ -1,11 +1,26 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Image, View } from "react-native";
-import { Main } from "./main";
+import { Main, SearchMoviesList } from "./main";
 import { MyTabBar } from "./bottomTabBar";
 import { TopRatedMoviesList } from "./topRatedMovies";
+import { useSnapshot } from "valtio";
+import { searchStore } from "../../store/searchStore";
 
 const Tab = createBottomTabNavigator();
 
+function SettingsScreen() {
+  const { searchQuery } = useSnapshot(searchStore);
+  return (
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: "#0F0F0F",
+      }}
+    >
+      {searchQuery ? <SearchMoviesList /> : <TopRatedMoviesList />}
+    </View>
+  );
+}
 function MyTabs() {
   return (
     <Tab.Navigator tabBar={(props) => <MyTabBar {...props} />}>
@@ -30,7 +45,7 @@ function MyTabs() {
       />
       <Tab.Screen
         name="Settings"
-        component={TopRatedMoviesList}
+        component={SettingsScreen}
         options={{
           tabBarIcon: (isFocused) => (
             <Image
