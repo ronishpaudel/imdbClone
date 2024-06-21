@@ -52,7 +52,7 @@ function Details({ route }: RootStackScreenProps<"Details">) {
     uri: `https://image.tmdb.org/t/p/w500/${route.params.poster_path}`,
   };
   const video = {
-    uri: `https://www.youtube.com/watch?v=${data?.videos?.[1]?.youtube_video_id}`,
+    uri: `https://www.youtube.com/watch?v=${route?.videos?.[1]?.youtube_video_id}`,
   };
 
   return (
@@ -60,11 +60,9 @@ function Details({ route }: RootStackScreenProps<"Details">) {
       <View style={styles.box}>
         <Image style={styles.image} source={images} resizeMode="cover" />
       </View>
-
       <Text style={styles.text}>{route.params.title}</Text>
       <Text style={styles.desc}>{route.params.overview}</Text>
       <Text style={styles.date}>Release Date: {route.params.release_date}</Text>
-
       <View style={styles.box}>
         <WebView style={styles.video} javaScriptEnabled={true} source={video} />
       </View>
