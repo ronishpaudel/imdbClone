@@ -52,7 +52,7 @@ function Details({ route }: RootStackScreenProps<"Details">) {
     uri: `https://image.tmdb.org/t/p/w500/${route.params.poster_path}`,
   };
   const video = {
-    uri: `https://www.youtube.com/watch?v=${route?.videos?.[1]?.youtube_video_id}`,
+    uri: `https://www.youtube.com/watch?v=${data?.videos?.[1]?.youtube_video_id}`,
   };
 
   return (
