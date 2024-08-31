@@ -26,6 +26,7 @@ export default function Card({
   onPress,
 }: ICard) {
   const images = { uri: `https://image.tmdb.org/t/p/w500/${image}` };
+
   return (
     <TouchableOpacity style={styles.container} key={cardKey} onPress={onPress}>
       <Image source={images} style={styles.image} resizeMode="cover" />
