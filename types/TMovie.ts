@@ -22,6 +22,7 @@ interface Trailer {
   thumbnail: string;
   title: string;
   views: number;
+  videos: [];
   youtube_channel_id: string;
   youtube_thumbnail: string;
   youtube_video_id: string;
