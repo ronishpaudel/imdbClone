@@ -15,6 +15,9 @@ export type TMovie = {
   vote_count?: number;
 };
 
+/**
+ * Interface for the Trailer data
+ */
 interface Trailer {
   categories: string[];
   id: string;
