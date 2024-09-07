@@ -14,6 +14,7 @@ export type TMovie = {
   vote_average?: number;
   vote_count?: number;
 };
+
 interface Trailer {
   categories: string[];
   id: string;
